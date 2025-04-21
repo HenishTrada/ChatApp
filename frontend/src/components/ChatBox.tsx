@@ -1,10 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-interface Message {
-  msg: string;
-  sender: string;
-  roomId : string
-}
+
 
 interface ChatBoxProps {
   messages: { msg: string; sender: string }[];

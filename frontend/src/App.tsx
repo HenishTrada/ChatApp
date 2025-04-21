@@ -150,7 +150,7 @@ function App() {
             />
             <button
               onClick={sendMessage}
-              className="bg-[#1daa61] flex items-center justify-center px-3 py-3 rounded-full ml-2 flex-shrink-0 block"
+              className="bg-[#1daa61] flex items-center justify-center px-3 py-3 rounded-full ml-2 flex-shrink-0 "
             >
               <IoSend />
             </button>
