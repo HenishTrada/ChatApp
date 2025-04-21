@@ -11,12 +11,24 @@ import {
 } from "@/components/ui/dialog";
 import SideBar from './SideBar';
 
-const Navbar = ({ username, setUsername, setRoomId, activeUsers }) => {
+interface NavbarProps {
+  username: string;
+  setUsername: (username: string) => void;
+  setRoomId: (roomId: string) => void;
+  activeUsers:  { roomId: string; username: string }[];
+}
+
+const Navbar: React.FC<NavbarProps> = ({ username, setUsername, setRoomId, activeUsers }) => {
   const [open, setOpen] = useState(false);
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue } = useForm<RoomActionData>();
 
   // Handle room join/create – only update state here
-  const handleRoomAction = (data) => {
+  interface RoomActionData {
+    username: string;
+    roomId: string;
+  }
+
+  const handleRoomAction = (data: RoomActionData) => {
     const { username, roomId } = data;
     setUsername(username);
     setRoomId(roomId);

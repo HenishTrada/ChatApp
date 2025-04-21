@@ -4,18 +4,12 @@ import {
   Sheet,
   SheetTrigger,
   SheetContent,
-  SheetHeader,
-  SheetTitle
 } from "@/components/ui/sheet";
 import SideBarContent from "./SideBarContent";
 
-interface ActiveUser {
-  roomId: string;
-  username: string;
-}
 
 interface SideBarProps {
-  activeUsers: ActiveUser[];  
+  activeUsers: { roomId: string; username: string }[];  
 }
 
 const SideBar: React.FC<SideBarProps> = ({ activeUsers }) => {

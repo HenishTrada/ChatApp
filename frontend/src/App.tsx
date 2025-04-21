@@ -10,7 +10,7 @@ function App() {
   const wsRef = useRef<WebSocket | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [messages, setMessages] = useState<{ msg: string; sender: string }[]>([]);
-  const [activeUsers, setActiveUsers] = useState<{ id: string; username: string }[]>([]);
+  const [activeUsers, setActiveUsers] = useState<{ roomId: string; username: string }[]>([]);
   const [username, setUsername] = useState<string>("Guest");
   const [roomId, setRoomId] = useState<string | null>("Unknown");
 

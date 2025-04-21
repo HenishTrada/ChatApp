@@ -7,8 +7,9 @@ interface Message {
 }
 
 interface ChatBoxProps {
-  messages: Message[];
-  username : string
+  messages: { msg: string; sender: string }[];
+  username: string;
+  roomId: string; // Added roomId property
 }
 const ChatBox: React.FC<ChatBoxProps> = ({ messages, username}) => {
   const messagesEndRef = useRef(null);

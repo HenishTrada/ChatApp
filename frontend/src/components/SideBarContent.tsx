@@ -1,13 +1,10 @@
 // components/SideBarContent.tsx
 import React from "react";
 
-interface ActiveUser {
-  roomId: string;
-  username: string;
-}
+
 
 interface SideBarContentProps {
-  activeUsers: ActiveUser[];
+  activeUsers: { roomId: string; username: string }[];
 }
 
 
