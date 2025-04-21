@@ -50,7 +50,7 @@ function App() {
     // Only create connection when both roomId and username are set
     // if (!roomId || !username) return;
 
-    const wsUrl = "ws://localhost:8080";
+    const wsUrl = "https://chatapp-hkgf.onrender.com";
     const wss = new WebSocket(wsUrl);
 
     // Close any existing connection before assigning a new one
