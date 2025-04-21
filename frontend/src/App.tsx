@@ -50,7 +50,7 @@ function App() {
     // Only create connection when both roomId and username are set
     // if (!roomId || !username) return;
 
-    const wsUrl = "ws://192.168.186.119:8080";
+    const wsUrl = "ws://localhost:8080";
     const wss = new WebSocket(wsUrl);
 
     // Close any existing connection before assigning a new one
@@ -119,7 +119,7 @@ function App() {
         style={{ height: "100dvh" }}
       >
         {/* Sidebar */}
-        <div className="text-white text-lg lg:text-2xl font-medium bg-[#2d2d2d] p-4 lg:w-2/10 w-full lg:rounded-l-lg border-r-1 border-[#222222] lg:sticky top-0 z-10 fixed">
+        <div className="text-white text-lg lg:text-2xl font-medium bg-[#2d2d2d] p-4 lg:w-2/10 w-full lg:rounded-l-lg border-r-1 border-[#222222] lg:sticky top-0 z-10 fixed ">
           <Navbar username={username} setUsername={setUsername} setRoomId={setRoomId} activeUsers={activeUsers} />
           <div className="relative mt-2 text-sm">
             <input
@@ -129,7 +129,7 @@ function App() {
             />
             <HiOutlineSearch className="absolute left-3 top-3 text-white" />
           </div>
-          <div className='block max-lg:hidden'>
+          <div className='block max-lg:hidden '>
             <SideBar activeUsers={activeUsers} />
           </div>
         </div>

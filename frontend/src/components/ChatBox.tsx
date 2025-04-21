@@ -20,7 +20,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, username}) => {
   }, [messages]);
 
   return (
-    <div className="relative flex flex-col flex-1 overflow-y-auto lg:rounded-r-lg hide-scrollbar space-y-2 bg-cover bg-center ">
+    <div className="relative flex flex-col flex-1 overflow-y-auto lg:rounded-tr-lg hide-scrollbar space-y-2 bg-cover bg-center border-t-2 border-r-2 border-[#5f5e5e]">
 
       <div
         className="fixed inset-0 bg-accent-foreground bg-center opacity-15 "

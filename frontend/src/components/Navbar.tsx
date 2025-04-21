@@ -46,10 +46,10 @@ const Navbar = ({ username, setUsername, setRoomId, activeUsers }) => {
         {/* Open Dialog */}
         <button
           onClick={() => setOpen(true)}
-          className="flex items-center gap-2 text-sm px-3 py-1.5 text-white font-medium rounded-lg bg-[#202020] hover:bg-[#151515]"
+          className="flex items-center gap-1 text-sm px-3 py-1.5 text-white font-medium rounded-lg bg-[#202020] hover:bg-[#151515]"
         >
           <IoIosAddCircle className="text-base" />
-          <span className="hidden sm:inline">Create/Join Room</span>
+          <span className="hidden sm:inline">Join Room</span>
         </button>
 
         {/* Room Dialog */}

@@ -17,7 +17,7 @@ const SideBarContent: React.FC<SideBarContentProps> = ({ activeUsers }) => {
     <div className=" w-full flex flex-col mt-2">
       <h2 className="text-white text-lg font-medium mb-2">Active Users</h2>
       
-      <ul>
+      <ul className="overflow-y-auto hide-scrollbar max-h-[530px]">
         {activeUsers.map((user, index) => (
           <li
             key={`${user.roomId}-${index}`} // Combine ID and index for uniqueness
