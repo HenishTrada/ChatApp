@@ -5,6 +5,7 @@ import ChatBox from './components/ChatBox';
 import { IoSend } from "react-icons/io5";
 import Navbar from './components/Navbar';
 import SideBar from './components/SideBar';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
   const wsRef = useRef<WebSocket | null>(null);
@@ -12,7 +13,8 @@ function App() {
   const [messages, setMessages] = useState<{ msg: string; sender: string }[]>([]);
   const [activeUsers, setActiveUsers] = useState<{ roomId: string; username: string }[]>([]);
   const [username, setUsername] = useState<string>("Guest");
-  const [roomId, setRoomId] = useState<string | null>("Unknown");
+  const [roomId, setRoomId] = useState<string | null>(null);
+
 
   // When roomId changes, load messages from localStorage for that room
   useEffect(() => {
@@ -24,18 +26,41 @@ function App() {
 
   // Function to send chat messages over the WebSocket
   function sendMessage() {
-    if (!wsRef.current || !inputRef.current || !roomId) return;
-    const msg = inputRef.current.value;
-    if (msg.trim() !== "") {
-      wsRef.current.send(
-        JSON.stringify({
-          type: "chat",
-          payload: { message: msg, sender: username, roomId }
-        })
-      );
+    const socket = wsRef.current;
+    const inputEl = inputRef.current;
+
+    if (!socket) {
+      toast.error("Connection not established. Please wait or reconnect.");
+      return;
     }
-    inputRef.current.value = "";
+
+    if (!inputEl) {
+      toast.error("Message input field is not available.");
+      return;
+    }
+
+    if (!roomId) {
+      toast.warning("You must join or create a room before sending a message.");
+      return;
+    }
+
+    const msg = inputEl.value.trim();
+    if (msg === "") {
+      toast.info("Cannot send an empty message.");
+      return;
+    }
+
+    // All good, send the message
+    socket.send(
+      JSON.stringify({
+        type: "chat",
+        payload: { message: msg, sender: username, roomId }
+      })
+    );
+
+    inputEl.value = "";
   }
+
 
   // Handle Enter key for message input
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -139,7 +164,6 @@ function App() {
           <ChatBox messages={messages} roomId={roomId || ""} username={username} />
 
           {/* Input box */}
-          {/* On mobile: fixed at bottom; on large screens: relative inside chat container */}
           <div className="flex bg-[#2c2c2c] p-2 border-t border-[#222222] fixed bottom-0 left-0 right-0 z-10 lg:relative lg:rounded-br-lg">
             <input
               type="text"
@@ -157,6 +181,7 @@ function App() {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 }

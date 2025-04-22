@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
   DialogFooter
 } from "@/components/ui/dialog";
 import SideBar from './SideBar';
@@ -15,7 +16,7 @@ interface NavbarProps {
   username: string;
   setUsername: (username: string) => void;
   setRoomId: (roomId: string) => void;
-  activeUsers:  { roomId: string; username: string }[];
+  activeUsers: { roomId: string; username: string }[];
 }
 
 const Navbar: React.FC<NavbarProps> = ({ username, setUsername, setRoomId, activeUsers }) => {
@@ -66,28 +67,30 @@ const Navbar: React.FC<NavbarProps> = ({ username, setUsername, setRoomId, activ
 
         {/* Room Dialog */}
         <Dialog open={open} onOpenChange={setOpen}>
-          <DialogContent>
+          <DialogContent className='bg-[#1c1c1c] border-none'>
             <DialogHeader>
-              <DialogTitle>Create or Join a Room</DialogTitle>
+              <DialogTitle className='bg-gradient-to-r from-green-400 via-slack-200 to-green-500 text-transparent bg-clip-text'>Create or Join a Room</DialogTitle>
+              <DialogDescription></DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit(handleRoomAction)} className="flex flex-col space-y-4">
               <input
                 {...register("username", { required: true })}
                 placeholder="Enter your username"
-                className="p-2 w-full text-white bg-[#3d3d3d] rounded"
+                className="p-2 w-full text-white bg-[#3d3d3d] rounded focus:outline-none focus:ring-1 focus:ring-green-700"
               />
+
               <div className="flex">
                 <input
                   {...register("roomId", { required: true })}
                   placeholder="Enter Room ID"
-                  className="p-2 flex-grow text-white bg-[#3d3d3d] rounded"
+                  className="p-2 flex-grow text-white bg-[#3d3d3d] rounded focus:outline-none focus:ring-1 focus:ring-green-700"
                 />
-                <button type="button" onClick={createNewRoom} className="ml-2 bg-blue-500 text-white px-3 py-2 rounded">
+                <button type="button" onClick={createNewRoom} className="ml-2 bg-green-800 text-white px-3 py-2 rounded focus:outline-none focus:ring-1 focus:ring-green-300">
                   New
                 </button>
               </div>
               <DialogFooter>
-                <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
+                <button type="submit" className="bg-gradient-to-r from-green-700 via-slack-400 to-green-700 text-white px-4 py-2 rounded w-full">
                   Enter
                 </button>
               </DialogFooter>

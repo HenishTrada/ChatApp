@@ -22,7 +22,7 @@ const SideBarContent: React.FC<SideBarContentProps> = ({ activeUsers }) => {
           >
            <div className="flex flex-col text-base">
            <span>{user.username}</span>
-           <p>Room Id :<span className="text-sm text-green-400"> {user.roomId}</span></p>
+           <p>Room Id :<span className="text-sm text-green-400"> {user.roomId === null ? "Unknown" : user.roomId}</span></p>
            </div>
           </li>
         ))}
