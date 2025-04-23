@@ -14,6 +14,7 @@ function App() {
   const [activeUsers, setActiveUsers] = useState<{ roomId: string; username: string }[]>([]);
   const [username, setUsername] = useState<string>("Guest");
   const [roomId, setRoomId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
 
   // When roomId changes, load messages from localStorage for that room
@@ -70,10 +71,8 @@ function App() {
     }
   };
 
-  // Create a new WebSocket connection when roomId and username are available
   useEffect(() => {
     // Only create connection when both roomId and username are set
-    // if (!roomId || !username) return;
 
     const wsUrl = "https://chatapp-hkgf.onrender.com";
     const wss = new WebSocket(wsUrl);
@@ -84,12 +83,15 @@ function App() {
     }
     wsRef.current = wss;
 
+    setLoading(true);
+
     // On WebSocket open, send the join message
     wss.onopen = () => {
       console.log("WebSocket connection established.");
       wsRef.current?.send(
         JSON.stringify({ type: "join", payload: { roomId, username } })
       );
+      setLoading(false);
     };
 
     // Handle incoming messages from the server
@@ -137,8 +139,15 @@ function App() {
     };
   }, [roomId, username]);
 
+
+
   return (
     <>
+      {loading && (
+        <div className="fixed inset-0 z-50  bg-opacity-80 flex items-center justify-center">
+          <div className="w-12 h-12 border-4 border-t-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
       <div
         className="flex flex-col lg:flex-row justify-between lg:p-2 hide-scrollbar relative"
         style={{ height: "100dvh" }}

@@ -34,7 +34,6 @@ const Navbar: React.FC<NavbarProps> = ({ username, setUsername, setRoomId, activ
     setUsername(username);
     setRoomId(roomId);
     setOpen(false);
-    // Note: Do not send the join message here!
   };
 
   // Generate a new Room ID
