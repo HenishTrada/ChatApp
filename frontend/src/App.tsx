@@ -144,8 +144,9 @@ function App() {
   return (
     <>
       {loading && (
-        <div className="fixed inset-0 z-50  bg-opacity-80 flex items-center justify-center">
+        <div className="fixed inset-0 z-50  bg-opacity-80 flex items-center justify-center flex-col">
           <div className="w-12 h-12 border-4 border-t-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+          <span className='text-white mt-2'>Socket establishing...</span>
         </div>
       )}
       <div
@@ -155,14 +156,6 @@ function App() {
         {/* Sidebar */}
         <div className="text-white text-lg lg:text-2xl font-medium bg-[#2d2d2d] p-4 lg:w-2/10 w-full lg:rounded-l-lg border-r-1 border-[#222222] lg:sticky top-0 z-10 fixed ">
           <Navbar username={username} setUsername={setUsername} setRoomId={setRoomId} activeUsers={activeUsers} />
-          <div className="relative mt-2 text-sm">
-            <input
-              type="text"
-              placeholder="Search User"
-              className="bg-[#3d3d3d] p-2 pl-8 rounded-lg w-full text-white focus:outline-none focus:bg-[#202020] border-b border-[#1daa61]"
-            />
-            <HiOutlineSearch className="absolute left-3 top-3 text-white" />
-          </div>
           <div className='block max-lg:hidden '>
             <SideBar activeUsers={activeUsers} />
           </div>
