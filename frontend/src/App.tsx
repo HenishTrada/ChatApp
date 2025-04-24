@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
-import { HiOutlineSearch } from "react-icons/hi";
 import ChatBox from './components/ChatBox';
 import { IoSend } from "react-icons/io5";
 import Navbar from './components/Navbar';
