@@ -1,3 +1,5 @@
+
+
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import ChatBox from './components/ChatBox';
@@ -73,7 +75,7 @@ function App() {
   useEffect(() => {
     // Only create connection when both roomId and username are set
 
-    const wsUrl = "https://chatapp-hkgf.onrender.com";
+    const wsUrl = import.meta.env.VITE_WS_URL_PRODUCTION || "ws://localhost:8080";
     const wss = new WebSocket(wsUrl);
 
     // Close any existing connection before assigning a new one
