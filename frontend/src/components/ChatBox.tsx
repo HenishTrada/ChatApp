@@ -30,8 +30,10 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, username}) => {
         <div
           key={index}
           className={`p-2 mx-4 my-2 max-w-xs ${message.sender === username ? "bg-[#005c4b] self-end" : "bg-[#363636] self-start"
-            } text-white rounded-lg`}
-        >
+            } text-white rounded-lg relative flex flex-col`}
+        > 
+          <span className={`text-xs text-[#4ea4ca] ${message.sender === username ? "hidden" : ""
+            } `}>{message.sender}</span>
           {message.msg}  {/* Fix: Extract msg */}
         </div>
       ))}
